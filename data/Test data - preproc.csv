@@ -1,0 +1,161 @@
+,File,overlap GT,preproc GT,preproc pattern,pair,overlap theirs,preproc theirs
+0,shubhamsinghgharsele_retail-mart-eda-and-sales-prediction-categorical_encoding,0,1,categorical encoding,"$invo110_$invo111_[, $invo122]_[, $invo122]",0,0
+1,shivanikulkarni_big-mart-sales-categorical_encoding,0,1,categorical encoding,"$invo64_$invo65_[, $invo90]_[, $invo95]",0,0
+2,mete6944_titanic-projects-categorical_encoding,0,1,categorical encoding,"$invo215_$invo216_[, ]_[, ]",0,0
+3,rohandesai24_housing-price-prediction-regularization-categorical_encoding,0,1,categorical encoding,"$invo263_$invo265_[, ]_[, ]",0,0
+4,speedwagon_neural-network-baseline-categorical_encoding,0,1,categorical encoding,"$invo41_$invo42_[, ]_[, ]",0,0
+5,viveksharma123456789_kernel7f0f5a1c50,0,1,categorical encoding,"$invo121_$invo122_[, ]_[, ]",0,1
+6,erdicem_hotel-booking-demand-eda-logistic-smote-categorical_encoding,0,1,categorical encoding,"$invo65_$invo67_[, $invo111]_[, $invo111]",0,0
+7,michalbrezk_simple-guide-to-house-prices-prediction-0-1-rmse-categorical_encoding,0,1,categorical encoding,"$invo280_$invo324_[, ]_[, ]",0,0
+8,pratyushnathsahu_titanic-dataset-kaggle-categorical_encoding,0,1,categorical encoding,"$invo58_$invo59_[, ]_[, ]",0,0
+9,zusmani_how-to-get-to-top-25-with-simple-model-sklearn-categorical_encoding,0,1,categorical encoding,"$invo96_$invo99_[, ]_[, ]",0,0
+10,LDA2-dimensionality_reduction,0,1,dimensionality reduction,"$invo9_$invo10_[, ]_[, ]",0,0
+11,kentdaniel_house-price,0,1,dimensionality reduction,"$invo182_$invo188_[, ]_[, ]",0,1
+12,LDA6-dimensionality_reduction,0,1,dimensionality reduction,"$invo8_$invo9_[, ]_[, ]",0,0
+13,jonnyevans_multiclass-svm-dimensionality_reduction,0,1,dimensionality reduction,"$invo28_$invo29_[, ]_[, ]",0,1
+14,haythemhsine_house-prices-by-haythem-hsine-dimensionality_reduction,0,1,dimensionality reduction,"$invo38_$invo45_[, ]_[, ]",0,1
+15,michalbrezk_simple-guide-to-house-prices-prediction-0-1-rmse-dimensionality_reduction,0,1,dimensionality reduction,"$invo279_$invo319_[, ]_[, ]",0,1
+16,PCA4-dimensionality_reduction,0,1,dimensionality reduction,"$invo15_$invo16_[, ]_[, ]",0,0
+17,PCA5-dimensionality_reduction,0,1,dimensionality reduction,"$invo18_$invo19_[, ]_[, ]",0,1
+18,PCA1-dimensionality_reduction,0,1,dimensionality reduction,"$invo9_$invo10_[, ]_[, ]",0,1
+19,2021-09-06-nb_1417-dimensionality_reduction,0,1,dimensionality reduction,"$invo17_$invo18_[, ]_[, ]",0,1
+20,shaijudatascience_titanic-survival-classification,0,1,discretization,"$invo177_$invo178_[, ]_[, ]",0,1
+21,saurabhrathor_eda-to-prediction-dietanic,0,1,discretization,"$invo182_$invo183_[, ]_[, ]",0,1
+22,liumeilin_prediction-of-quality-of-wine-discretization,0,1,discretization,"$invo46_$invo48_[, ]_[, ]",0,1
+23,vinzzhang_titanic-survival-prediction-discretization,0,1,discretization,"$invo43_$invo44_[, ]_[, ]",0,1
+24,Discretization2-discretization,0,1,discretization,"$invo14_$invo15_[, ]_[, ]",0,0
+25,shivanikulkarni_big-mart-sales-discretization,0,1,discretization,"$invo60_$invo61_[, $invo91]_[, $invo93]",0,1
+26,rbehd6129_lev-1-titanic-2,0,1,discretization,"$invo228_$invo229_[, ]_[, ]",0,1
+27,pratyushnathsahu_titanic-dataset-kaggle-discretization,0,1,discretization,"$invo57_$invo58_[, ]_[, ]",0,1
+28,nb_1307,0,1,discretization,"$invo139_$invo140_[, ]_[, ]",0,1
+29,prateekatam_ble-rssi-localization-discretization,0,1,discretization,"$invo33_$invo41_[, ]_[, ]",0,1
+30,speedwagon_neural-network-baseline-feature_scaling,0,1,feature scaling,"$invo44_$invo46_[, ]_[, ]",0,1
+31,2021-09-30-nb_3594,0,1,feature scaling,"$invo54_$invo56_[, ]_[, ]",0,1
+32,2021-09-01-nb_2528,0,1,feature scaling,"$invo91_$invo97_[, ]_[, ]",0,1
+33,biphili_india-the-diabetes-captial-of-world,0,1,feature scaling,"$invo62_$invo63_[, ]_[, ]",0,1
+34,adithyabshetty100_coronary-heart-disease-prediction,0,1,feature scaling,"$invo198_$invo199_[, ]_[, ]",0,1
+35,2021-09-05-nb_1162,1,1,feature scaling,"$invo197_$invo221_[, ]_[, ]",1,0
+36,gargmanish_how-to-handle-imbalance-data-study-in-detail,0,1,feature scaling,"$invo39_$invo40_[, $invo128]_[, $invo128]",0,1
+37,tungnguyen99tn_a-simple-neural-network,0,1,feature scaling,"$invo22_$invo33_[, ]_[, ]",0,1
+38,jonnyevans_multiclass-svm-feature_scaling,0,1,feature scaling,"$invo27_$invo28_[, ]_[, ]",0,1
+39,nb_154,0,1,feature scaling,"$invo107_$invo108_[, ]_[, ]",0,1
+40,panamby_loan-default-prediction-feature_selection,0,1,feature selection,"$invo79_$invo80_[, $invo83]_[, $invo83]",0,0
+41,SelectFromModelPre-feature_selection,0,1,feature selection,"$invo16_$invo17_[, ]_[, ]",0,1
+42,RandomForestFeatureImportances-feature_selection,0,1,feature selection,"$invo17_$invo18_[, ]_[, ]",0,0
+43,SHAP-feature_selection,0,1,feature selection,"$invo19_$invo20_[, ]_[, ]",0,0
+44,SequentialFeatureSelection-feature_selection,0,1,feature selection,"$invo18_$invo19_[, ]_[, ]",0,1
+45,ELI5-feature_selection,0,1,feature selection,"$invo23_$invo24_[, ]_[, ]",0,0
+46,RFE-feature_selection,0,1,feature selection,"$invo16_$invo17_[, ]_[, ]",0,1
+47,artgor_santander-eda-fe-fs-and-models,0,1,feature selection,"$invo103_$invo107_[, ]_[, $invo143]",0,0
+48,SelectKBest-feature_selection,0,1,feature selection,"$invo21_$invo22_[, ]_[, ]",0,1
+49,SelectFromModelpost-feature_selection,0,1,feature selection,"$invo17_$invo18_[, ]_[, ]",0,0
+50,ngbolin_titanicpy-score-0-80382,0,1,groupby-aggregation,"$invo440_$invo477_[, ]_[, ]",0,1
+51,carrie1_customer-insights,0,1,groupby-aggregation,"$invo53_$invo56_[, ]_[, ]",0,0
+52,rj81309050_titanic-survival-prediction-groupby_aggregation,0,1,groupby-aggregation,"$invo102_$invo107_[, ]_[, ]",0,1
+53,cmuckenfuss_league-of-legends-muckenfuss,0,1,groupby-aggregation,"$invo549_$invo550_[, ]_[, ]",0,1
+54,jkroman2_team9-regression-groupby_aggregation,0,1,groupby-aggregation,"$invo99_$invo100_[, ]_[, ]",0,1
+55,winterhd_aicamp-decision-tree-exercise-2-groupby_aggregation,0,1,groupby-aggregation,"$invo92_$invo93_[, ]_[, $invo103]",0,1
+56,vinzzhang_titanic-survival-prediction-groupby_aggregation,0,1,groupby-aggregation,"$invo44_$invo45_[, ]_[, ]",0,1
+57,thiagoandrade_xgboost-dt-rfr-e-svr,0,1,groupby-aggregation,"$invo138_$invo139_[, ]_[, ]",0,1
+58,zebra69_performance-over-80-notebook-on-titanic-groupby_aggregation,0,1,groupby-aggregation,"$invo169_$invo170_[, ]_[, ]",0,1
+59,djousto_house-price-imputation-and-feature-engineering-groupby_aggregation,0,1,groupby-aggregation,"$invo168_$invo169_[, ]_[, ]",0,1
+60,zusmani_how-to-get-to-top-25-with-simple-model-sklearn-imputation,0,1,imputation,"$invo108_$invo111_[, ]_[, ]",0,1
+61,hakanahmad_indian-metro-data-kernel,0,1,imputation,"$invo117_$invo118_[, ]_[, ]",0,1
+62,pratyushnathsahu_titanic-dataset-kaggle-imputation,0,1,imputation,"$invo60_$invo61_[, ]_[, ]",0,1
+63,rangarajansaranathan_personal-loan-analysis-using-supervised-learning-imputation,0,1,imputation,"$invo266_$invo268_[, $invo342]_[, $invo342]",1,0
+64,winterhd_aicamp-decision-tree-exercise-2-imputation,0,1,imputation,"$invo76_$invo77_[, ]_[, $invo87]",0,1
+65,williamu32_blend-stack-prediction-regression,0,1,imputation,"$invo294_$invo313_[, ]_[, $invo317]",0,1
+66,2021-09-23-nb_2646,0,1,imputation,"$invo42_$invo45_[, ]_[, ]",0,1
+67,jruots_forecasting-video-game-sales-imputation,0,1,imputation,"$invo134_$invo141_[, ]_[, ]",0,1
+68,mete6944_titanic-projects-imputation,0,1,imputation,"$invo216_$invo217_[, ]_[, ]",0,1
+69,padmarajg_house-price-count-encoding-and-simple-imputer-imputation,0,1,imputation,"$invo156_$invo168_[, ]_[, $invo177]",0,1
+70,2021-09-01-nb_1093,0,1,text vectorization,"$invo58_$invo59_[, ]_[, ]",0,1
+71,2021-09-01-nb_1671,0,1,text vectorization,"$invo32_$invo33_[, ]_[, ]",0,1
+72,manjeetsingh_naive-bayes-for-disaster-tweets,0,1,text vectorization,"$invo106_$invo112_[, ]_[, ]",0,1
+73,nb_1215,0,1,text vectorization,"$invo27_$invo28_[, ]_[, ]",0,1
+74,mpwolke_swear-words-in-mandarin,0,1,text vectorization,"$invo67_$invo68_[, ]_[, ]",0,1
+75,2021-09-09-nb_1559,0,1,text vectorization,"$invo127_$invo128_[, ]_[, ]",0,1
+76,shubham219_nlp-starter-with-different-models,0,1,text vectorization,"$invo148_$invo149_[, ]_[, ]",0,1
+77,milkitten_aicamp-decision-tree-exercise-2,0,1,text vectorization,"$invo94_$invo95_[, ]_[, ]",0,1
+78,coralyss_tf-idf-with-mutation-types-ensembl-model,0,1,text vectorization,"$invo26_$invo27_[, ]_[, ]",0,1
+79,taruntiwarihp_phishing-sites-detector-complete-info-about-it,0,1,text vectorization,"$invo75_$invo81_[, ]_[, ]",0,1
+80,nb_1058,1,0,,"$invo15_$invo22_[, ]_[, ]",1,0
+81,2021-09-05-nb_1630,0,0,,"$invo23_$invo48_[, ]_[, ]",0,0
+82,nb_1199,1,0,,"$invo87_$invo88_[, ]_[, ]",1,0
+83,nb_15,0,0,,"$invo107_$invo108_[, ]_[, ]",0,0
+84,2021-09-11-nb_86,0,0,,"$invo152_$invo153_[, $invo189]_[, $invo189]",0,0
+85,nb_1209,0,0,,"$invo132_$invo160_[, ]_[, ]",0,0
+86,2021-09-30-nb_3336,1,0,,"$invo46_$invo47_[, ]_[, ]",1,0
+87,2021-09-12-nb_125,1,0,,"$invo14_$invo15_[, ]_[, ]",1,0
+88,guys191325_python-workshop-2019-sol,0,0,,"$invo72_$invo76_[, ]_[, ]",0,0
+89,2021-09-12-nb_125,0,0,,"$invo23_$invo26_[, ]_[, ]",0,0
+90,2021-09-11-nb_86,1,0,,"$invo39_$invo47_[, ]_[, ]",1,0
+91,nb_1170,0,0,,"$invo17_$invo18_[, ]_[, ]",0,0
+92,priyankacharya_titanic-second-attempt-revised,0,0,,"$invo10_$invo15_[, ]_[, ]",1,0
+93,2021-09-05-nb_1630,1,0,,"$invo23_$invo33_[, ]_[, ]",1,0
+94,2021-09-20-nb_1743,0,0,,"$invo318_$invo333_[, ]_[, ]",1,0
+95,junaidkhan281_kernel4f2e56a724,1,0,,"$invo43_$invo45_[, ]_[, ]",1,0
+96,nb_1003,0,0,,"$invo26_$invo28_[, ]_[, ]",0,0
+97,2021-09-05-nb_1244,0,0,,"$invo63_$invo75_[, ]_[, ]",0,0
+98,2021-09-30-nb_3336,1,0,,"$invo59_$invo60_[, ]_[, ]",1,0
+99,2021-09-16-nb_318,1,0,,"$invo25_$invo28_[, ]_[, ]",1,0
+100,nb_1186,0,0,,"$invo17_$invo18_[, ]_[, ]",0,0
+101,nb_240,1,0,,"$invo26_$invo27_[, ]_[, ]",1,0
+102,2021-09-05-nb_1633,0,0,,"$invo58_$invo92_[$invo113, $invo74]_[, $invo115]",0,1
+103,2021-09-30-nb_619,1,0,,"$invo103_$invo110_[, $invo138]_[, $invo138]",1,0
+104,2021-09-12-nb_3074,0,0,,"$invo25_$invo37_[, ]_[, ]",0,0
+105,smaelmaq_titanic-simple-classification,0,0,,"$invo113_$invo114_[, ]_[, ]",1,0
+106,2021-09-20-nb_1322,0,0,,"$invo119_$invo123_[, ]_[, $invo131]",0,0
+107,goldenmetric_a-journey-through-titanic,0,0,,"$invo115_$invo116_[, ]_[, ]",0,1
+108,nb_1057,0,0,,"$invo28_$invo61_[, ]_[, ]",0,0
+109,nb_241,1,0,,"$invo26_$invo27_[, ]_[, ]",1,0
+110,avishake_first-kernel-from-a-complete-beginner,1,0,,"$invo32_$invo34_[, ]_[, ]",1,0
+111,2021-09-20-nb_1743,0,0,,"$invo280_$invo295_[, ]_[, ]",1,0
+112,albinahaliti_nifty-indices-dataset,0,0,,"$invo31_$invo32_[, ]_[, ]",0,0
+113,nb_1242,0,0,,"$invo32_$invo34_[, ]_[, ]",0,0
+114,2021-09-12-nb_1942,1,0,,"$invo43_$invo44_[, ]_[, ]",1,0
+115,2021-09-13-nb_3144,0,0,,"$invo126_$invo132_[, $invo168]_[, $invo168]",0,1
+116,nb_1016,0,0,,"$invo38_$invo52_[, ]_[, ]",0,0
+117,2021-09-27-nb_3449,1,0,,"$invo347_$invo349_[, ]_[, ]",1,0
+118,nb_103,0,0,,"$invo46_$invo59_[, ]_[, ]",0,0
+119,joshuabeard_jumping-into-the-titanic-data,0,0,,"$invo92_$invo93_[, $invo101]_[, $invo101]",0,1
+120,2021-09-05-nb_1630,1,0,,"$invo58_$invo73_[, ]_[, ]",1,0
+121,nb_224,0,0,,"$invo17_$invo18_[, ]_[, ]",0,0
+122,nb_1182,0,0,,"$invo90_$invo92_[, $invo110]_[, $invo110]",0,0
+123,kasikrit_exercise-modeling-from-scratch,1,0,,"$invo20_$invo23_[, ]_[, ]",1,0
+124,2021-09-06-nb_1417,0,0,,"$invo63_$invo82_[, ]_[, ]",0,0
+125,chronisk_logistic-regression-xr,1,0,,"$invo108_$invo114_[, ]_[, ]",1,0
+126,nb_1012,0,0,,"$invo21_$invo22_[, ]_[, ]",0,0
+127,2021-09-20-nb_1322,0,0,,"$invo16_$invo26_[, ]_[, $invo42]",0,0
+128,bibek777_bert-baseline,0,0,,"$invo152_$invo193_[, ]_[, ]",0,0
+129,nglukhoa_titanic-exploration,0,0,,"$invo122_$invo123_[, ]_[, ]",0,1
+130,imamirabbas_am-kernel-tf2-web-club,0,0,,"$invo182_$invo193_[, ]_[, ]",0,0
+131,davala_eda-random-forest-adaboosting-and-gradient-boos,0,0,,"$invo58_$invo59_[, ]_[, ]",0,0
+132,swetapadmadalai_exercise-your-first-machine-learning-model,1,0,,"$invo11_$invo13_[, ]_[, ]",1,0
+133,2021-09-20-nb_1322,0,0,,"$invo152_$invo156_[, ]_[, ]",0,0
+134,2021-09-11-nb_86,0,0,,"$invo152_$invo154_[, $invo179]_[, $invo179]",0,0
+135,2021-09-27-nb_3449,1,0,,"$invo203_$invo205_[, ]_[, ]",1,0
+136,nb_1,0,0,,"$invo10_$invo11_[, ]_[, ]",0,0
+137,2021-09-30-nb_3336,0,0,,"$invo46_$invo48_[, ]_[, ]",0,0
+138,2021-09-27-nb_3449,1,0,,"$invo62_$invo67_[, ]_[, ]",1,0
+139,2021-09-20-nb_1322,0,0,,"$invo182_$invo183_[, ]_[, ]",0,0
+140,emetdan_a-journey-through-titanic,0,0,,"$invo116_$invo117_[, ]_[, ]",0,1
+141,2021-09-24-nb_2053,0,0,,"$invo23_$invo25_[, ]_[, ]",0,0
+142,nb_1177,0,0,,"$invo28_$invo44_[, ]_[, ]",0,0
+143,2021-09-27-nb_3449,1,0,,"$invo203_$invo208_[, ]_[, ]",1,0
+144,2021-09-05-nb_1244,0,0,,"$invo63_$invo64_[, ]_[, ]",0,0
+145,2021-09-05-nb_2770,1,0,,"$invo42_$invo43_[, ]_[, ]",1,0
+146,2021-09-13-nb_606,0,0,,"$invo103_$invo106_[, $invo111]_[, $invo112]",0,0
+147,nb_271,0,0,,"$invo50_$invo51_[, ]_[, ]",0,0
+148,samueljklee_exercise-machine-learning-competitions,0,0,,"$invo45_$invo48_[, ]_[, ]",0,0
+149,2021-09-05-nb_1630,1,0,,"$invo23_$invo38_[, ]_[, ]",1,0
+150,rahulatrkm_final-training,0,0,,"$invo76_$invo78_[, ]_[, ]",0,0
+151,nb_187,0,0,,"$invo103_$invo108_[, ]_[, ]",0,0
+152,nb_207,0,0,,"$invo9_$invo10_[, ]_[, ]",0,0
+153,2021-09-20-nb_1322,0,0,,"$invo153_$invo157_[, ]_[, ]",0,0
+154,nb_195,1,0,,"$invo220_$invo233_[, ]_[, ]",0,1
+155,2021-09-12-nb_606,0,0,,"$invo65_$invo66_[, ]_[, ]",0,0
+156,2021-09-14-nb_100,0,0,,"$invo5_$invo6_[, ]_[, ]",0,0
+157,jasonjz_titanic-data-science-solutions-b356df,0,0,,"$invo150_$invo151_[, ]_[, ]",1,0
+158,pawan2905_jantahack-healthcare-analytics,0,0,,"$invo132_$invo133_[, $invo141]_[, $invo141]",1,0
+159,2021-09-09-nb_498,0,0,,"$invo17_$invo18_[, ]_[, ]",0,0

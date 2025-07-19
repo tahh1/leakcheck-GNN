@@ -6,14 +6,13 @@ import shutil
 import argparse
 import time
 import traceback
+import sent2vec
 from .global_collector import GlobalCollector
 from . import factgen
 from .irgen import CodeTransformer
 from .config import configs
 from .utils import remove_files
 from .build_subgraphs import build_subgraphs
-from tokenizers import Tokenizer
-import sent2vec
 from .singleton_loader import ModelLoader
 
 
@@ -113,7 +112,8 @@ def main(input_path):
         print("Failed to generate IR: " + input_path)
         return "Failed to generate IR"
     
-    _, t[2] = infer_types(ir_path)
+    if not os.path.exists(json_path): _, t[2] = infer_types(ir_path) 
+    else: t[2] = 0
     if not os.path.exists(json_path):
         print("Failed to infer types: " + input_path)
         return "Failed to infer types" 

@@ -44,7 +44,6 @@ class FactManager(object):
             "FormalParam": [],
             "ActualReturn": [],
             "FormalReturn": [],
-            # "MethodUpdate": [],
             "VarType": [],
             "SubType": [],
             "VarInMethod": [],

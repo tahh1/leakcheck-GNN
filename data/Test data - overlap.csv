@@ -1,0 +1,61 @@
+,File,overlap GT,preproc GT,overlap pattern,pair,overlap theirs,preproc theirs
+0,2021-09-17-nb_1782,1,0,Oversampling,"$invo77_$invo78_[, ]_[, ]",1,0
+1,2021-09-30-nb_195,1,1,Oversampling,"$invo181_$invo182_[, ]_[, ]",1,0
+2,2021-09-05-nb_1162,1,1,Oversampling,"$invo130_$invo131_[, ]_[, ]",1,0
+3,2021-09-05-nb_2770,1,1,Oversampling,"$invo103_$invo104_[, ]_[, ]",1,0
+4,nibukdk93_wine-quality-prediction,1,1,Oversampling,"$invo54_$invo55_[, ]_[, ]",1,0
+5,example1API-API,1,1,Oversampling,"$invo13_$invo14_[, ]_[, ]",1,0
+6,example2API-API,1,1,Oversampling,"$invo15_$invo16_[, ]_[, ]",1,0
+7,example3API-API,1,1,Oversampling,"$invo17_$invo18_[, ]_[, ]",1,0
+8,example4API-API,1,1,Oversampling,"$invo17_$invo18_[, ]_[, ]",1,0
+9,example5API-API,1,1,Oversampling,"$invo11_$invo12_[, ]_[, ]",0,0
+10,2021-09-12-nb_1942,1,0,Procedural Overlap Leakage,"$invo32_$invo35_[, ]_[, ]",1,0
+11,srvkarn_animalpred,1,0,Procedural Overlap Leakage,"$invo45_$invo46_[, ]_[, ]",1,0
+12,nb_1046,1,0,Procedural Overlap Leakage,"$invo125_$invo140_[, ]_[, ]",1,0
+13,nb_239,1,0,Procedural Overlap Leakage,"$invo36_$invo39_[, ]_[, ]",1,0
+14,example1Procedural-Procedural,1,0,Procedural Overlap Leakage,"$invo6_$invo7_[, ]_[, ]",1,0
+15,example2Procedural-Procedural,1,0,Procedural Overlap Leakage,"$invo14_$invo15_[, ]_[, ]",1,0
+16,example3Procedural-Procedural,1,0,Procedural Overlap Leakage,"$invo8_$invo9_[, ]_[, ]",0,0
+17,example4Procedural-Procedural,1,0,Procedural Overlap Leakage,"$invo7_$invo8_[, ]_[, ]",0,0
+18,example5Procedural-Procedural,1,0,Procedural Overlap Leakage,"$invo12_$invo13_[, ]_[, ]",0,0
+19,example6Procedural-Procedural,1,0,Procedural Overlap Leakage,"$invo12_$invo13_[, ]_[, ]",1,0
+20,nb_1113,1,0,Train as test,"$invo113_$invo114_[, ]_[, ]",1,0
+21,forwet_exercise-model-validation,1,0,Train as test,"$invo4_$invo6_[, ]_[, ]",1,0
+22,2021-09-20-nb_1743,1,0,Train as test,"$invo261_$invo263_[, ]_[, ]",1,0
+23,2021-09-09-nb_1731,1,0,Train as test,"$invo20_$invo23_[, ]_[, ]",1,0
+24,chickandmushroom_logistic-regression,1,0,Train as test,"$invo12_$invo15_[, ]_[, ]",1,0
+25,svetlanaiyshanina_kernel7cdcd87b5c,1,0,Train as test,"$invo48_$invo49_[, ]_[, ]",1,0
+26,nb_196,1,0,Train as test,"$invo35_$invo36_[, ]_[, ]",1,0
+27,2021-09-05-nb_1630,1,0,Train as test,"$invo23_$invo25_[, ]_[, ]",1,0
+28,nb_240,1,0,Train as test,"$invo26_$invo27_[, ]_[, ]",1,0
+29,2021-09-24-nb_2053,1,0,Train as test,"$invo23_$invo24_[, ]_[, ]",1,0
+30,2021-09-05-nb_1630,0,0,,"$invo58_$invo83_[, ]_[, ]",0,0
+31,maistrishid_recession-detection-in-african-countries,0,0,,"$invo41_$invo42_[$invo82, $invo50]_[$invo82, $invo50]",0,0
+32,nb_301,0,0,,"$invo24_$invo27_[, ]_[, ]",0,0
+33,2021-09-10-nb_1970,0,0,,"$invo23_$invo24_[, ]_[, ]",0,0
+34,nb_1204,0,0,,"$invo61_$invo62_[, ]_[, ]",0,0
+35,anubhav1772_appl-stock-price-trend-prediction-using-lstm,0,0,,"$invo47_$invo57_[, ]_[, ]",0,0
+36,nb_1065,0,0,,"$invo27_$invo31_[, ]_[, ]",0,0
+37,2021-09-12-nb_125,0,0,,"$invo14_$invo16_[, ]_[, ]",0,0
+38,nb_1202,0,0,,"$invo47_$invo48_[, $invo55]_[, $invo55]",0,0
+39,gregbrunk_foresttype-viztree,0,0,,"$invo127_$invo129_[, ]_[, ]",0,0
+40,2021-09-30-nb_195,0,1,,"$invo143_$invo144_[, ]_[, ]",0,1
+41,nb_1252,0,0,,"$invo20_$invo21_[, ]_[, ]",0,0
+42,2021-09-11-nb_86,0,0,,"$invo152_$invo154_[, $invo184]_[, $invo184]",0,0
+43,2021-09-27-nb_1060,0,0,,"$invo42_$invo31_[, ]_[, ]",0,0
+44,w415146142_try-again-titanic-survival-set-more-features,0,0,,"$invo90_$invo91_[, ]_[, ]",0,1
+45,nb_188,0,0,,"$invo199_$invo200_[, ]_[, ]",0,0
+46,michaelzeng71_jigsaw-olid-solid-xlm-roberta-same-tokenizer,0,0,,"$invo108_$invo192_[, ]_[, ]",0,0
+47,2021-09-13-nb_3144,0,0,,"$invo126_$invo127_[, $invo168]_[, $invo168]",0,1
+48,nb_1120,0,0,,"$invo29_$invo30_[, ]_[, ]",0,0
+49,2021-09-07-nb_4061,0,0,,"$invo9_$invo10_[, ]_[, ]",0,0
+50,ayushigaur_world-values-survey-wave-6-abortion,0,0,,"$invo19_$invo20_[, $invo156]_[, $invo156]",0,0
+51,2021-09-06-nb_1824,0,0,,"$invo84_$invo112_[, ]_[, ]",0,0
+52,aakashg1999_placement-prediction-model-building-and-hosting,0,0,,"$invo95_$invo96_[, ]_[, ]",0,0
+53,nb_1201,0,0,,"$invo38_$invo39_[, ]_[, ]",0,0
+54,nb_1003,0,0,,"$invo26_$invo28_[, ]_[, ]",0,0
+55,2021-09-09-nb_1559,0,1,,"$invo127_$invo128_[, ]_[, ]",0,1
+56,2021-09-11-nb_86,0,0,,"$invo152_$invo154_[, $invo174]_[, $invo174]",1,0
+57,2021-09-04-nb_1743,0,0,,"$invo201_$invo202_[, ]_[, ]",0,0
+58,nb_286,0,0,,"$invo63_$invo65_[, ]_[, ]",0,0
+59,speedwagon_neural-network-baseline,0,1,,"$invo48_$invo50_[, ]_[, ]",0,1

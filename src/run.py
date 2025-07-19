@@ -17,7 +17,7 @@ def write_to_log(filename, msg=""):
     log.write(filename + "\t" + msg + "\n")
 
 def analyze(file, file_path):
-    result = subprocess.run(["2to3", "-w", file_path]) 
+    result = subprocess.run([sys.executable, "-m", "lib2to3", "-w", file_path]) #subprocess.run(["2to3", "-w", file_path]) 
     if result.returncode:
         print_red("Conversion failed!")
         write_to_log(file, "Conversion failed")
@@ -26,8 +26,8 @@ def analyze(file, file_path):
     if type(msg) == str:
         print_red("Analysis failed!")
         write_to_log(file, msg)
-    else:
-        write_to_log(file, "Success!\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}\t".format(msg[0]+msg[1]+msg[3]+msg[4], msg[2], msg[5], sum(msg)))
+    #else:
+    #    write_to_log(file, "Success!\t{:.2f}\t{:.2f}\t{:.2f}\t{:.2f}\t".format(msg[0]+msg[1]+msg[3]+msg[4], msg[2], msg[5], sum(msg)))
 
 if __name__ == "__main__":
     if args.file:
@@ -41,7 +41,7 @@ if __name__ == "__main__":
             files = [os.path.join(dp, f) for dp, dn, fn in os.walk(os.path.expanduser(dir_path)) for f in fn]
         else:
             files = os.listdir(dir_path)
-        files = [f for f in files if f.endswith(".py") and not f.endswith(".ir.py")]
+        files = [f for f in files if f.endswith(".py") and not f.endswith(".ir.py") and not os.path.exists(os.path.join(dir_path,f"{f[:-3]}-fact"))]
         log_path = os.path.join(dir_path, "log.txt")
     log = open(log_path, "a")
     if args.sort:
@@ -56,4 +56,3 @@ if __name__ == "__main__":
         analyze(file, file_path)
     log.close()
 
-    # main.main(test_file_path)
