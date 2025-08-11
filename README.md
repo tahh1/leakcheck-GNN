@@ -42,4 +42,4 @@ python ./src/train.py --classifier <classifier_type> --data path/to/dataset_fold
 python src/test.py --classifier <classifier_type> --model path/to/pretrained_model --data path/to/dataset_folder --annotation path/to/annotation_file
 ```
 
-Refer to the sent2vec repo to see how to use the pre-trained models.
+Refer to the sent2vec repo to see how to use the pre-trained models. Pre-trained models can be found at [here](https://drive.google.com/drive/folders/1IvOeAq3s5iDAFbJv7bL2f9ewM9_eokQ9?usp=sharing).
