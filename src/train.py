@@ -10,192 +10,209 @@ import torch.optim as optim
 from dgl.dataloading import GraphDataLoader
 from sklearn.metrics import classification_report
 from gnn import GNN
-from graph_dataset import Dataset, handle_duplicate_ids
+from graph_dataset import Dataset
 import argparse
+from sklearn.metrics import precision_recall_curve, auc, matthews_corrcoef
+from metrics import plot_pr_curve, evaluate_predictions
+import json
+
+DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+NUM_EPOCHS = 4
+NUM_FOLDS = 5
+IN_DIM = 85
+HIDDEN_DIM = 104
+N_CLASSES = 2
+N_CONVS = 4
 
 
 
-def train(train_loader, val_loader, device, model,epochs):
-    loss_fcn =nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.005)
-    for epoch in range(epochs):
-        model.train()
-        total_loss = 0
-        for batch, (batched_graph, labels,_) in enumerate(train_loader):
-            batched_graph = batched_graph.to(device)
-            labels = labels.long().to(device) 
-            batched_graph.ndata.pop("_ID")
-            batched_graph.edata.pop("_ID")
-            feat = batched_graph.ndata.pop("features").to(torch.float)
-            labels = labels.flatten()
-            logits = model(batched_graph, feat)
-            loss = loss_fcn(logits, labels)
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-            total_loss += loss.item()
-        train_acc = evaluate(train_loader, device, model)
-        valid_acc = evaluate(val_loader, device, model)
-        print(
-              "Epoch {:05d} | Loss {:.4f} | Train Acc. {:.4f} | Validation Acc. {:.4f} ".format(
-                  epoch, total_loss / (batch + 1), train_acc, valid_acc
-              )
-          )
 
 
-def evaluate(dataloader, device, model, evaluation_report=False):
-    model.eval()
-    total_samples = 0
-    correct_predictions = 0
-    for batched_graph, labels, _ in dataloader:
-        batched_graph = batched_graph.to(device)
-        labels = labels.to(device).to(torch.float32).flatten()
-        features = batched_graph.ndata.pop("features")
-        
-        total_samples += len(labels)
-        logits = model(batched_graph, features)
-        predicted = torch.max(logits, 1)[1].to(torch.float32).to(device)
-        correct_predictions += (predicted == labels).sum().item()
-
-    hamming_loss = 1.0 * correct_predictions / total_samples
-
-    if evaluation_report:
-        class_report = classification_report(labels.cpu(), predicted.cpu(),zero_division=0)
-        print(class_report)
-        class_report_dict = classification_report(labels.cpu(), predicted.cpu(), output_dict=True,zero_division=0)
-        #print(confusion_matrix(labels.cpu(), predicted.cpu()))
-        return hamming_loss, class_report_dict
-    
-    return hamming_loss
-
-def cross_validate(n_splits, dataset, epochs, n_convs, hidden_dimensions, handle_duplicates, dataset_dup=None):
-    labels = dataset.label
-    indices = np.arange(len(labels))
-    skf = StratifiedKFold(n_splits=n_splits, shuffle=True)
-    hamming_losses = []
-    class_reports = []
-
-    if handle_duplicates:
-        print('Loading duplicate data information...')
-        mappings, duplicate_indices = handle_duplicate_ids()
-
-    for fold_index, (train_indices, val_indices) in enumerate(skf.split(indices, labels)):
-        print(f'{"-" * 47} fold {fold_index + 1} {"-" * 47} ')
-
-        if handle_duplicates:
-            train_indices = [mappings[i] for i in train_indices]
-            val_indices = [mappings[i] for i in val_indices]
-            additional_indices = []
-            for idx in val_indices:
-                if idx in duplicate_indices.keys():
-                    additional_indices.extend(duplicate_indices[idx])
-            val_indices.extend(additional_indices)
-            dataset = dataset_dup
-
-        train_loader = GraphDataLoader(
-            dataset,
-            sampler=SubsetRandomSampler(train_indices),
-            batch_size=len(train_indices),
-            pin_memory=torch.cuda.is_available()
+def train(train_dataloader,valid_dataloader,epochs,model,leakage):
+        optimizer = optim.Adam(model.parameters(), lr=0.0005)
+        num_epochs = epochs
+        scheduler = optim.lr_scheduler.StepLR(
+            optimizer, step_size=num_epochs, gamma=0.5
         )
+        loss_fcn =nn.CrossEntropyLoss()
+        for epoch in range(num_epochs):
+            model.train()
+            total_loss = 0.0
+            for batched_g, labels, names in train_dataloader:
 
-        val_loader = GraphDataLoader(
-            dataset,
-            sampler=SubsetRandomSampler(val_indices),
-            batch_size=len(val_indices),
-            pin_memory=torch.cuda.is_available()
-        )
+                batched_g, labels = batched_g.to(DEVICE), labels[:, leakage].long().to(DEVICE)
+                logits = model(
+                    batched_g, batched_g.ndata["features"])
+                loss = loss_fcn(logits, labels)
+                total_loss += loss.item()
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+            scheduler.step()
+            avg_loss = total_loss / len(train_dataloader)
+            train_acc = evaluate(train_dataloader, model, leakage,evaluation_report=False)
+            val_acc = evaluate(valid_dataloader, model, leakage,evaluation_report=False)
+            print(
+                f"Epoch: {epoch:03d}, Loss: {avg_loss:.4f}, Train: {train_acc:.4f}, Val: {val_acc:.4f}"
+            )
+        val_acc, class_report = evaluate(valid_dataloader, model, leakage ,evaluation_report=True)
+        return val_acc,class_report
 
-        device = "cuda"if torch.cuda.is_available() else"cpu"
-        input_size = dataset.feature_size
-        output_size = dataset.num_labels
-        model = GNN(input_size, hidden_dimensions, output_size, n_convs).to(device)
 
-        train(train_loader, val_loader, device, model, epochs)
-        ham_loss, class_report = evaluate(val_loader, device, model, evaluation_report=True)
-        hamming_losses.append(ham_loss)
-        class_reports.append(class_report)
+def cross_validate(dataset, leakage,epochs,batch_size):
+    Y = dataset.label[:, leakage]
+    X = np.arange(len(Y))
 
-    final_results = {
-        "0.0": {"precision": 0, "recall": 0, "f1-score": 0},
-        "1.0": {"precision": 0, "recall": 0, "f1-score": 0}
+    skf = StratifiedKFold(n_splits=NUM_FOLDS, shuffle=True, random_state=42)
+    accuracies = []
+    overall_class_reports = {
+        "0.0": {"precision": [], "recall": [], "f1-score": []},
+        "1.0": {"precision": [], "recall": [], "f1-score": []},
+        "mcc" : {"mcc":[]},
+        "pr_auc": {"pr_auc": []}
     }
 
-    assert n_splits == len(class_reports)
+    print(batch_size)
+    for fold, (train_indices, val_indices) in enumerate(skf.split(X, Y)):
 
-    for report in class_reports:
-        for label in ["0.0", "1.0"]:
-            for metric in ["precision", "recall", "f1-score"]:
-                final_results[label][metric] += report[label][metric] / n_splits
+
+        print(f"{'-' * 20} Fold {fold + 1}: Num train indices: {len(train_indices)}, "
+              f"Num val indices: {len(val_indices)} {'-' * 20}")
+
+        train_dataloader = GraphDataLoader(
+            dataset,
+            sampler=SubsetRandomSampler(train_indices),
+            batch_size=batch_size,
+            worker_init_fn=lambda _: np.random.seed(42)
+        )
+        valid_dataloader = GraphDataLoader(
+            dataset,
+            sampler=SubsetRandomSampler(val_indices),
+            batch_size=batch_size,
+            worker_init_fn=lambda _: np.random.seed(42)
+        )
+
+
+        model = GNN(in_dim=IN_DIM, hidden_dim=HIDDEN_DIM, n_classes=N_CLASSES,n_convs=N_CONVS).to(DEVICE)
+        val_acc,class_report=train(train_dataloader,valid_dataloader,epochs,model,leakage)
+
+        accuracies.append(val_acc)
+        for metric in overall_class_reports.keys():
+            if metric in class_report:
+                for stat in overall_class_reports[metric].keys():
+                    overall_class_reports[metric][stat].append(class_report[metric][stat])
+
+    averaged_class_reports = {}
+    for metric, stats in overall_class_reports.items():
+        averaged_class_reports[metric] = {stat: np.mean(values) for stat, values in stats.items()}
+
+    average_accuracies = np.mean(accuracies)
 
     print("-" * 44 + " Overall results" + "-" * 44 + "\n")
-    print(f"Overall accuracy: {sum(hamming_losses) / len(hamming_losses):.4f}")
-    print("Detailed metrics:\n")
-
-    for label in ["0.0", "1.0"]:
-        print(f"Metrics for label {label}:")
-        for metric in ["precision", "recall", "f1-score"]:
-            value = final_results[label][metric]
-            print(f"  {metric.capitalize():<10}: {value:.4f}")
-        print("\n")
+    print("\nCross-Validation Results:")
+    print(f"Average accuracy Loss: {average_accuracies:.4f}")
+    print("Average Class Reports:")
+    for metric, stats in averaged_class_reports.items():
+        print(f"{metric}: {stats}")
 
 
 
+    print("\n\n\nTraining on the entire dataset....")
+    entire_data_dataloader = GraphDataLoader(
+            dataset,
+            sampler=SubsetRandomSampler(range(len(dataset))),
+            batch_size=batch_size,
+            worker_init_fn=lambda _: np.random.seed(42)
+        )
+    val_acc,class_report=train(entire_data_dataloader,entire_data_dataloader,epochs,model,leakage)
+    print("\nSaving the pre-trained model ....")
+    print("Model saved.")
+    torch.save(model.state_dict(), f"models/{'preprocessing_' if leakage ==1 else 'overlap_'}classifier.pth")
 
 
-def experiment_2(classifier):
-    data_folder = './data/Experiment2'
-    dataset_path_no_dup = './data/GitHub 1 NoDup.csv'
-    dataset_path_dup = './data/GitHub 1.csv'
-
-    print("Building the dataset for experiment 2...")
-    dataset_dup = Dataset(dataset_path=dataset_path_dup, data_folder=data_folder, leakage=classifier)
-    dataset_nodup = Dataset(dataset_path=dataset_path_no_dup, data_folder=data_folder, leakage=classifier)
-    
-    print(f"\nTraining {classifier} classifier for experiment 2...")
-    cross_validate(5, dataset_nodup, 5, 6, 104, True, dataset_dup)
-    
-    print("Experiment 2 finished.")
 
 
-def experiment_1(classifier):
-    data_folder = './data/Experiment1'
-    dataset = './data/Additional Labeled Data.csv'
 
-    print("Building the dataset for experiment 1...")
-    dataset = Dataset(dataset_path=dataset, data_folder=data_folder, leakage=classifier)
 
-    print(f"\nTraining {classifier} classifier for experiment 1...")
-    cross_validate(5, dataset, 5, 6, 104, False)
-    
-    print("Experiment 1 finished.")
 
-def train_on_custom_dataset(data_folder, csv_file, classifier):
-        print("Building the dataset...")
-        dataset = Dataset(dataset_path=csv_file, data_folder=data_folder, leakage=classifier)
-        print(f"\nTraining {classifier} classifier...")
-        cross_validate(5, dataset, 5, 6, 104, False)
+@torch.no_grad()
+def evaluate(dataloader, model, leakage, evaluation_report=False):
+    model.eval()
+    total = 0
+    total_correct = 0
+    total_predictions = []
+    total_labels = []
+    total_probs = []  # Store probabilities for AUC calculation
+    name = []
+
+    for batched_graph, labels, names in dataloader:
+
+        name.extend(names)
+        batched_graph = batched_graph.to(DEVICE)
+        labels = labels[:, leakage].to(DEVICE).to(torch.float32).flatten()
+        feat = batched_graph.ndata.pop("features")
+        total += len(labels)
+        logits = model(batched_graph, feat)
+
+        # Extract predictions and probabilities
+        probs = torch.softmax(logits, dim=1)[:, 1]  # Probabilities for the positive class
+        threshold = 0.4  # Adjust to control precision/recall
+        predicted = (probs >= threshold).to(torch.float32)
+
+        total_predictions.append(predicted)
+        total_labels.append(labels)
+        total_probs.append(probs)  # Store probabilities
+
+        total_correct += (predicted == labels).sum().item()
+
+    # Compute overall accuracy
+    accuracy = 1.0 * total_correct / total
+
+    # Concatenate all predictions, labels, and probabilities
+    total_predictions = torch.cat(total_predictions, dim=0)
+    total_labels = torch.cat(total_labels, dim=0)
+    total_probs = torch.cat(total_probs, dim=0)
+
+    pr_auc = None
+    mcc = None
+    if len(torch.unique(total_labels)) > 1:  # Ensure there are both classes for AUC calculation
+        precision, recall, _ = precision_recall_curve(total_labels.cpu().numpy(), total_probs.cpu().numpy())
+        pr_auc = auc(recall, precision)
+        mcc = matthews_corrcoef(total_labels.cpu().numpy(), total_predictions.cpu().numpy())
+
+
+
+    if evaluation_report:
+        # Generate classification report and confusion matrix
+        class_report, conf_matrix, missed_cases, class_report_dict = evaluate_predictions(
+            total_predictions.cpu(), total_labels.cpu(), name
+        )
+        print("Classification Report:")
+        print(class_report)
+        # Add ROC-AUC to the classification report dictionary
+        if pr_auc is not None:
+            class_report_dict["pr_auc"] = {"pr_auc":pr_auc}
+        if mcc is not None:
+            class_report_dict["mcc"] = {"mcc":mcc}
+       
+        return accuracy, class_report_dict
+
+    return accuracy
+
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run experiments with different classifiers. Specify an experiment number and a classifier or a folder path, csv path, and the classifier")
-    parser.add_argument('--experiment', choices=['1', '2'], help="Choose which experiment to run: 1 or 2")
-    parser.add_argument('--classifier', choices=['preprocessing', 'overlap'], required=True, help="Choose which classifier to train")
-    parser.add_argument('--data-folder', help="Path to the data folder")
-    parser.add_argument('--csv-file', help="Path to the CSV file")
+    parser = argparse.ArgumentParser(description="Train the leakage classifier on a dataset of contextualized dependency graphs")
+    parser.add_argument('--classifier', choices=['preprocessing', 'overlap'], required=True, help="Choose which classifier to train. Preprocessing Leakage or Overlap Leakage classifier.")
+    parser.add_argument('--data', required=True,help="Path to the data folder or the bin file where the graphs are located.")
+    parser.add_argument('--batch-size', default=512,help="Batch size of the dataloaders")
+    parser.add_argument('--annotation',  required=True, help="Path to the CSV file where the ground truths are stored.")
+    
 
     args = parser.parse_args()
-
-    if args.experiment:
-        if args.experiment == '1':
-            experiment_1(args.classifier)
-        elif args.experiment == '2':
-            experiment_2(args.classifier)
-    elif args.data_folder and args.csv_file:
-        train_on_custom_dataset(args.data_folder, args.csv_file, args.classifier)
-    else:
-        print("Please provide, along with the classifier, either an experiment number or both data folder and CSV file path.")
-
+    leakage = 1 if args.classifier == "preprocessing" else 0
+    dataset = Dataset(dataset_path=args.annotation, data_path=args.data)
+    cross_validate(dataset, leakage,NUM_EPOCHS,int(args.batch_size))
 
 if __name__ == "__main__":
     main()

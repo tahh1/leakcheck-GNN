@@ -1,6 +1,6 @@
 import threading
-from tokenizers import Tokenizer
 import sent2vec
+from tokenizers import Tokenizer
 
 class ModelLoader:
     _instance = None
@@ -16,9 +16,9 @@ class ModelLoader:
 
     def _initialize(self):
         # Load the tokenizer and model
-        tokenizer_path = "./src/tokenizer.json"
+        tokenizer_path = "./src/tokenizer_normalized.json"
         self.tokenizer = Tokenizer.from_file(tokenizer_path)
         
         self.sent2vec_model = sent2vec.Sent2vecModel()
-        self.sent2vec_model.load_model("./src/my_model.bin")
+        self.sent2vec_model.load_model("./src/my_model_normalized_meths_32.bin")
 
